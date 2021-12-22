@@ -1,15 +1,7 @@
 import * as React from "react";
-import { useMutation, gql } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
-
-export const CREATE_SESSION = gql`
-  mutation createSession($session: SessionInput) {
-    createSession(session: $session) {
-      id
-      title
-    }
-  }
-`;
+import { CREATE_SESSION } from "./CREATE_SESSION";
 
 interface State {
   title: string;
@@ -22,16 +14,16 @@ type StateKeys = keyof State;
 
 type Action =
   | {
-    type: "onChange";
-    payload: { name: StateKeys; value: string };
-  }
+      type: "onChange";
+      payload: { name: StateKeys; value: string };
+    }
   | { type: "onBlur" };
 
 export function SessionForm() {
   const history = useHistory();
   const [create] = useMutation(CREATE_SESSION);
 
-  const initialState = {
+  const initialState: State = {
     title: "",
     description: "",
     format: "",

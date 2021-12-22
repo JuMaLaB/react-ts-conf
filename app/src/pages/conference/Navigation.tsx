@@ -1,8 +1,7 @@
 import * as React from "react";
 import { useRouteMatch, Link } from "react-router-dom";
 
-
-function NavigationLink(props: { label: string, to: string }) {
+function NavigationLink(props: { to: string; label: string }) {
   return (
     <Link
       style={{
@@ -23,10 +22,7 @@ function NavigationLink(props: { label: string, to: string }) {
 }
 
 export function Navigation() {
-
   const { url } = useRouteMatch();
-
-  // throw Error("Fuck this is an Error !!!");
 
   return (
     <section className="banner">
@@ -42,9 +38,9 @@ export function Navigation() {
               justifyContent: "center",
             }}
           >
-            <NavigationLink label="View speakers" to={`${url}/speakers`} />
-            <NavigationLink label="View Sessions" to={`${url}/sessions`} />
-            <NavigationLink label="about us" to={`${url}/about`} />
+            <NavigationLink to={`${url}/speakers`} label="View Speakers" />
+            <NavigationLink to={`${url}/sessions`} label="View sessions" />
+            <NavigationLink to={`${url}/about`} label="About us" />
           </div>
         </div>
       </div>

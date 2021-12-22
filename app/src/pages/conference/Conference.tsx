@@ -7,7 +7,7 @@ import "./style-sessions.css";
 import { Speakers, Speaker } from "./Speakers";
 import { AboutUs } from "./AboutUs";
 import { Navigation } from "./Navigation";
-import ErrorBoundary from "./ErrorBoudaries";
+import ErrorBoundary from "./ErrorBoundary";
 
 export function Conference() {
   const { path } = useRouteMatch();

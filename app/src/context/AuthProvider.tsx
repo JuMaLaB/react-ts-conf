@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 interface AuthContextValues {
   authInfo: AuthInfo;
   isAuthenticated: boolean;
-  // setAuthInfo: React.Dispatch<React.SetStateAction<AuthInfo>>;
   setAuthInfo: (authInfo: AuthInfo) => void;
   isAdmin: boolean;
 }
 
-export const AuthContext = React.createContext<undefined | AuthContextValues>(undefined);
+export const AuthContext = React.createContext<undefined | AuthContextValues>(
+  undefined
+);
 const Provider = AuthContext.Provider;
 
 interface Props {
-  children: React.ReactChild;
+  children: React.ReactNode;
 }
+
 interface UserData {
   role: "USER" | "ADMIN";
 }
+
 interface AuthInfo {
   userData: UserData | null;
 }
@@ -30,12 +33,15 @@ export function AuthProvider({ children }: Props) {
 
   const isAdmin = authInfo.userData?.role === "ADMIN";
 
-  function handleAuthInfo(authInfo: AuthInfo) {
-    setAuthInfo(authInfo);
-  };
-
   return (
-    <Provider value={{ authInfo, isAuthenticated, setAuthInfo: handleAuthInfo, isAdmin }}>
+    <Provider
+      value={{
+        authInfo,
+        isAuthenticated,
+        setAuthInfo,
+        isAdmin,
+      }}
+    >
       {children}
     </Provider>
   );
